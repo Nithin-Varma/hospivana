@@ -4,10 +4,12 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
+import BookOnlineCall from '@/components/BookOnlineCall';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +28,7 @@ export default function Header() {
   ];
 
   return (
+    <>
     <header 
       className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled ? 'bg-white/95 backdrop-blur-sm shadow-md' : 'bg-transparent'
@@ -64,7 +67,12 @@ export default function Header() {
               animate={{ opacity: 1, scale: 1 }}
             >
               <Button
-                className={scrolled ? 'bg-blue-600 text-white hover:bg-white hover:text-blue-600' : 'bg-white text-blue-600 hover:bg-blue-600 hover:text-white'}
+                onClick={() => setIsModalOpen(true)}
+                className={
+                  scrolled
+                    ? "bg-blue-600 text-white hover:bg-white hover:text-blue-600"
+                    : "bg-white text-blue-600 hover:bg-blue-600 hover:text-white"
+                }
               >
                 Book Consultation
               </Button>
@@ -107,14 +115,16 @@ export default function Header() {
                 </motion.a>
               ))}
               <div className="p-4">
-                <Button className="w-full bg-blue-600 text-white">
-                  Book Consultation
-                </Button>
+              <Button className="w-full bg-blue-600 text-white" onClick={() => setIsModalOpen(true)}>
+                    Book Consultation
+                  </Button>
               </div>
             </motion.nav>
           )}
         </AnimatePresence>
       </div>
     </header>
+    <BookOnlineCall isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </>
   );
 }
