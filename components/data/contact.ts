@@ -13,13 +13,13 @@ export const contactOptions = [
     title: "Email",
     description: "Send us a message",
     action: "Send Email",
-    href: "mailto:contact@healthdigital.com"
+    href: "mailto:mnithin1422@gmail.com"
   },
   {
     icon: MessageSquare,
     title: "Book a Call",
     description: "Schedule a consultation",
     action: "Book Now",
-    href: "#"
+    href: "https://calendly.com/mnithin1422/30min"
   }
 ];
