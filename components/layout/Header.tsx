@@ -44,7 +44,7 @@ export default function Header() {
               scrolled ? 'text-blue-600' : 'text-white'
             }`}
           >
-            Hospivana
+            MarketingLead
           </motion.a>
 
           {/* Desktop Navigation */}
