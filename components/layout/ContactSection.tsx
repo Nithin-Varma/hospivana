@@ -11,9 +11,9 @@ const ContactSection = () => {
     <section id="contact" className="section-padding bg-blue-900 py-24">
       <div className="container mx-auto px-4 md:px-8">
         <SectionHeader
-          eyebrow="Contact Us"
-          title="Ready to Transform Your Hospital's Marketing?"
-          description="Get in touch with us today and let's discuss how we can help your hospital grow"
+          eyebrow="Get Started Today"
+          title="Ready to Grow Your Business?"
+          description="Let's discuss how our marketing expertise can help you achieve your business goals"
           textColor="light"
         />
 

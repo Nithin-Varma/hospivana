@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Star, PlayCircle } from 'lucide-react';
+import { Star, PlayCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ConsultationDialog from '../common/ConsultationDialog';
 import { stats } from '../data/services';
@@ -19,9 +19,9 @@ const HeroSection = () => {
         initial="initial"
         animate="animate"
         variants={heroImageAnimation}
-        className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d')] bg-cover bg-center"
+        className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1460925895917-afdab827c52f')] bg-cover bg-center"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-900/50 via-blue-900/60 to-blue-900/80" />
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-900/70 via-blue-900/80 to-blue-900/90" />
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div 
@@ -37,18 +37,18 @@ const HeroSection = () => {
             className="inline-block"
           >
             <span className="inline-flex items-center px-4 py-1.5 rounded-full border border-blue-400 bg-blue-900/50 text-blue-200 text-sm">
-              <Star className="w-4 h-4 mr-2" /> Trusted by Leading Hospitals in Nizamabad
+              <Star className="w-4 h-4 mr-2" /> #1 Digital Marketing Agency
             </span>
           </motion.div>
 
           <motion.div className="mt-8">
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              Transform Your Hospital's
-              <span className="text-blue-400"> Digital Presence</span>
+              Grow Your Business with
+              <span className="text-blue-400"> Expert Marketing</span>
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-blue-100 mb-12 leading-relaxed">
-              Modernize your hospital's marketing with professional videos, engaging social media, 
-              and stunning websites that build trust and attract more patients.
+              From social media management to Google Ads, we provide comprehensive digital marketing 
+              solutions that drive real results for businesses across all industries.
             </p>
           
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -57,9 +57,9 @@ const HeroSection = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="w-full sm:w-auto px-8 py-6 text-lg rounded-full text-black hover:bg-blue-600 hover:text-white transition"
+                className="w-full sm:w-auto px-8 py-6 text-lg rounded-full text-white border-white hover:bg-white hover:text-blue-900 transition-all duration-300"
               >
-                Watch Success Stories <PlayCircle className="ml-2 h-5 w-5" />
+                View Our Work <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
 

@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Digital Marketing for Hospitals | Nizamabad',
-  description: 'Transform your hospital\'s digital presence with professional video production, website development, and social media management services in Nizamabad.',
+  title: 'MarketingLead - Digital Marketing Agency | Grow Your Business',
+  description: 'Professional digital marketing services for businesses of all sizes. We offer social media management, website development, Google Ads, Meta Ads, YouTube marketing, and comprehensive marketing strategies.',
 };
 
 export default function RootLayout({

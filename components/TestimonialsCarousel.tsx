@@ -9,28 +9,39 @@ import { Button } from '@/components/ui/button';
 
 const testimonials = [
   {
-    quote: "The transformation in our online presence has been remarkable. We're seeing more patient inquiries than ever before.",
-    author: "Dr. Rajesh Kumar",
-    role: "Medical Director",
-    hospital: "City Hospital"
-  },
-  {
-    quote: "Their video marketing strategy helped us showcase our facilities and expertise in a way that really connects with patients.",
-    author: "Dr. Priya Reddy",
+    quote: "MarketingLead transformed our online presence completely. Our revenue has increased by 300% in just 6 months!",
+    author: "Sarah Johnson",
     role: "CEO",
-    hospital: "Medicare Center"
+    company: "TechStart Solutions",
+    industry: "Technology"
   },
   {
-    quote: "Professional, responsive, and results-driven. They've helped us establish a strong digital presence in Nizamabad.",
-    author: "Dr. Suresh Rao",
-    role: "Chairman",
-    hospital: "Global Hospitals"
+    quote: "The team's expertise in restaurant marketing is unmatched. Our online orders have never been higher.",
+    author: "Marco Rodriguez",
+    role: "Owner",
+    company: "Bella Vista Restaurant",
+    industry: "Food & Beverage"
   },
   {
-    quote: "The ROI we've seen from their digital marketing efforts has been exceptional. Highly recommended!",
-    author: "Dr. Anita Sharma",
+    quote: "Professional, creative, and results-driven. They helped us reach more students than ever before.",
+    author: "Dr. Emily Chen",
+    role: "Principal",
+    company: "Sunrise Academy",
+    industry: "Education"
+  },
+  {
+    quote: "Our hotel bookings increased dramatically thanks to their targeted marketing campaigns.",
+    author: "James Wilson",
+    role: "General Manager",
+    company: "Grand Palace Hotel",
+    industry: "Hospitality"
+  },
+  {
+    quote: "They understand healthcare marketing like no other agency. Highly recommended!",
+    author: "Dr. Michael Brown",
     role: "Director",
-    hospital: "Care Hospitals"
+    company: "HealthCare Plus",
+    industry: "Healthcare"
   }
 ];
 
@@ -76,7 +87,10 @@ export default function TestimonialsCarousel() {
               <div>
                 <p className="font-semibold text-gray-900">{testimonial.author}</p>
                 <p className="text-gray-600">{testimonial.role}</p>
-                <p className="text-blue-600">{testimonial.hospital}</p>
+                <p className="text-blue-600">{testimonial.company}</p>
+                <span className="inline-block mt-2 bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
+                  {testimonial.industry}
+                </span>
               </div>
             </Card>
           </div>

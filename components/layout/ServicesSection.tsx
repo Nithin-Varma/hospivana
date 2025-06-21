@@ -12,8 +12,8 @@ const ServicesSection = () => {
       <div className="container mx-auto px-4 md:px-8">
         <SectionHeader
           eyebrow="Our Services"
-          title="Comprehensive Digital Marketing Solutions"
-          description="Everything your hospital needs to thrive in the digital age"
+          title="Complete Digital Marketing Solutions"
+          description="Everything your business needs to succeed online - from strategy to execution"
         />
 
         <motion.div 
@@ -21,7 +21,7 @@ const ServicesSection = () => {
           whileInView="animate"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
         >
           {services.map((service, index) => (
             <ServiceCard 
