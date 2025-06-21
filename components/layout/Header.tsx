@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 import BookOnlineCall from '@/components/BookOnlineCall';
+import Link from 'next/link';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,9 +23,17 @@ export default function Header() {
 
   const menuItems = [
     { label: 'Services', href: '#services' },
+    { label: 'Industries', href: '#industries' },
     { label: 'Case Studies', href: '#case-studies' },
     { label: 'Testimonials', href: '#testimonials' },
     { label: 'Contact', href: '#contact' },
+  ];
+
+  const industryPages = [
+    { label: 'Healthcare', href: '/hospitals' },
+    { label: 'Education', href: '/schools' },
+    { label: 'Restaurants', href: '/restaurants' },
+    { label: 'Hotels', href: '/hotels' },
   ];
 
   return (
@@ -35,17 +44,20 @@ export default function Header() {
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 md:h-20"> {/* Reduced height for mobile */}
-          <motion.a
-            href="/"
+        <div className="flex items-center justify-between h-16 md:h-20">
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className={`text-xl md:text-2xl font-bold ${
-              scrolled ? 'text-blue-600' : 'text-white'
-            }`}
           >
-            MarketingLead
-          </motion.a>
+            <Link
+              href="/"
+              className={`text-xl md:text-2xl font-bold ${
+                scrolled ? 'text-blue-600' : 'text-white'
+              }`}
+            >
+              MarketingLead
+            </Link>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
@@ -62,6 +74,27 @@ export default function Header() {
                 {item.label}
               </motion.a>
             ))}
+            
+            {/* Industries Dropdown */}
+            <div className="relative group">
+              <span className={`font-medium cursor-pointer hover:text-blue-500 transition-colors ${
+                scrolled ? 'text-gray-700' : 'text-white'
+              }`}>
+                Industries
+              </span>
+              <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                {industryPages.map((page) => (
+                  <Link
+                    key={page.label}
+                    href={page.href}
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 first:rounded-t-lg last:rounded-b-lg"
+                  >
+                    {page.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -70,7 +103,7 @@ export default function Header() {
                 onClick={() => setIsModalOpen(true)}
                 className={
                   scrolled
-                    ? "bg-blue-600 text-white hover:bg-white hover:text-blue-600"
+                    ? "bg-blue-600 text-white hover:bg-blue-700"
                     : "bg-white text-blue-600 hover:bg-blue-600 hover:text-white"
                 }
               >
@@ -114,10 +147,32 @@ export default function Header() {
                   {item.label}
                 </motion.a>
               ))}
-              <div className="p-4">
-              <Button className="w-full bg-blue-600 text-white" onClick={() => setIsModalOpen(true)}>
-                    Book Consultation
-                  </Button>
+              
+              {/* Mobile Industries */}
+              <div className="border-t border-gray-200">
+                <div className="px-4 py-2 text-sm font-medium text-gray-500">Industries</div>
+                {industryPages.map((page) => (
+                  <Link
+                    key={page.label}
+                    href={page.href}
+                    className="block py-2 px-6 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {page.label}
+                  </Link>
+                ))}
+              </div>
+              
+              <div className="p-4 border-t border-gray-200">
+                <Button 
+                  className="w-full bg-blue-600 text-white" 
+                  onClick={() => {
+                    setIsModalOpen(true);
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  Book Consultation
+                </Button>
               </div>
             </motion.nav>
           )}
