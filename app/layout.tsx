@@ -17,6 +17,14 @@ export const metadata: Metadata = {
     url: 'https://marketinglead.in',
     siteName: 'marketinglead.in',
     description: "Say bye to traditional marketing and hello to digital success with marketinglead.in. We specialize in social media management, website development, Google Ads, Meta Ads, YouTube marketing, and more.",
+    images: [
+      {
+        url: './logo.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'Best Digital Marketing Agency in Nizamabad',
+      },
+    ],
     type: 'website',
   },
 };
