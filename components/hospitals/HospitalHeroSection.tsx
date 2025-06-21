@@ -57,7 +57,7 @@ const HospitalHeroSection = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="w-full sm:w-auto px-8 py-6 text-lg rounded-full text-white border-white hover:bg-white hover:text-blue-900 transition-all duration-300"
+                className="w-full sm:w-auto px-8 py-6 text-lg rounded-full text-blue-900 hover:bg-blue-900 hover:text-white transition-all duration-300"
               >
                 View Healthcare Success Stories <PlayCircle className="ml-2 h-5 w-5" />
               </Button>

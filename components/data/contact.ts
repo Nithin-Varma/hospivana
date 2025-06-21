@@ -6,14 +6,14 @@ export const contactOptions = [
     title: "WhatsApp",
     description: "Chat with our marketing experts",
     action: "Start Chat",
-    href: "https://wa.me/+919876543210"
+    href: "https://wa.me/+918143564595"
   },
   {
     icon: Mail,
     title: "Email",
     description: "Send us your project details",
     action: "Send Email",
-    href: "mailto:mnithin1422@gmail.com"
+    href: "mailto:prashanthvarma0055@gmail.com"
   },
   {
     icon: MessageSquare,
