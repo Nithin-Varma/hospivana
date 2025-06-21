@@ -6,7 +6,7 @@ export const contactOptions = [
     title: "WhatsApp",
     description: "Chat with our marketing experts",
     action: "Start Chat",
-    href: "https://wa.me/+918143564595"
+    href: "https://wa.me/+919494952462"
   },
   {
     icon: Mail,
