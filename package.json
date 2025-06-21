@@ -1,6 +1,7 @@
 {
-  "name": "nextjs",
+  "name": "marketinglead.in",
   "version": "0.1.0",
+  "description": "One stop solution for all your digital marketing needs in Nizamabad Telangana. From lead generation to customer engagement, we provide tools and services to help you grow your business.",
   "private": true,
   "scripts": {
     "dev": "next dev",
