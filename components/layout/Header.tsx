@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 import BookOnlineCall from '@/components/BookOnlineCall';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,11 +52,20 @@ export default function Header() {
           >
             <Link
               href="/"
-              className={`text-xl md:text-2xl font-bold ${
+              className={`flex items-center gap-2 ${
                 scrolled ? 'text-blue-600' : 'text-white'
               }`}
             >
-              MarketingLead
+              <Image
+                src="/favicon.ico"
+                alt="MarketingLead Logo"
+                width={32}
+                height={32}
+                className="w-8 h-8 md:w-8 md:h-8"
+              />
+              <span className="text-xl md:text-2xl font-bold hidden md:block">
+                MarketingLead
+              </span>
             </Link>
           </motion.div>
 

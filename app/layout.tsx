@@ -12,6 +12,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'marketinglead.in - Digital Marketing Agency In Nizamabad Telangana | Best Source To Grow Your Business',
   description: 'Professional digital marketing services for businesses of all sizes. We offer social media management, website development, Google Ads, Meta Ads, YouTube marketing, and comprehensive marketing strategies.',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
   openGraph: {
     title: "Best Digital Marketing Agency in Nizamabad | marketinglead.in",
     url: 'https://marketinglead.in',
