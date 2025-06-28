@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Lock, Eye, EyeOff } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
-const ADMIN_SECRET_CODE = process.env.ADMIN_SECRET_CODE; // You can change this to any secret code you want
+const ADMIN_SECRET_CODE = process.env.NEXT_PUBLIC_ADMIN_SECRET_CODE; // You can change this to any secret code you want
 
 export default function AdminAccessModal() {
   const [secretCode, setSecretCode] = useState('');
@@ -17,6 +17,8 @@ export default function AdminAccessModal() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
+
+  console.log(ADMIN_SECRET_CODE);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,7 +34,8 @@ export default function AdminAccessModal() {
         title: 'Access granted!',
         description: 'Welcome to the admin dashboard.',
       });
-      // The page will automatically show the admin content
+      // Reload the page to show the admin dashboard
+      window.location.reload();
     } else {
       toast({
         title: 'Access denied',
