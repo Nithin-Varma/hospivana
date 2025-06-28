@@ -25,6 +25,7 @@ export default function Header() {
   const menuItems = [
     { label: 'Services', href: '#services' },
     { label: 'Industries', href: '#industries' },
+    { label: 'Blog', href: '/blog' },
     { label: 'Case Studies', href: '#case-studies' },
     { label: 'Testimonials', href: '#testimonials' },
     { label: 'Contact', href: '#contact' },
