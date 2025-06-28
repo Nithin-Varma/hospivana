@@ -11,6 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://marketinglead.in'),
   title: 'marketinglead.in - Digital Marketing Agency In Nizamabad Telangana | Best Source To Grow Your Business',
   description: 'Professional digital marketing services for businesses of all sizes. We offer social media management, website development, Google Ads, Meta Ads, YouTube marketing, and comprehensive marketing strategies.',
   icons: {
