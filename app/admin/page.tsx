@@ -10,6 +10,11 @@ import { Separator } from '@/components/ui/separator';
 import { Calendar, User, MessageCircle, Eye, Edit, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import AdminAccessModal from '@/components/admin/AdminAccessModal';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select';
+import { useToast } from '@/hooks/use-toast';
 
 const metadata: Metadata = {
   title: 'Admin Dashboard - MarketingLead',
@@ -26,6 +31,11 @@ export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [adminData, setAdminData] = useState<AdminData>({ blogPosts: [], reviews: [], categories: [] });
   const [isLoading, setIsLoading] = useState(true);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [createForm, setCreateForm] = useState({ title: '', content: '', author: '', categoryId: '', metaTitle: '', metaDescription: '', keywords: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
+  const { toast } = useToast();
 
   useEffect(() => {
     // Check if admin access is granted
@@ -56,6 +66,41 @@ export default function AdminPage() {
     sessionStorage.removeItem('adminAccess');
     setIsAuthenticated(false);
     setAdminData({ blogPosts: [], reviews: [], categories: [] });
+  };
+
+  const handleCreateInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setCreateForm(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleCategoryChange = (value: string) => {
+    setCreateForm(prev => ({ ...prev, categoryId: value }));
+  };
+
+  const handleCreatePost = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError('');
+    try {
+      const response = await fetch('/api/admin/data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(createForm),
+      });
+      if (response.ok) {
+        setCreateForm({ title: '', content: '', author: '', categoryId: '', metaTitle: '', metaDescription: '', keywords: '' });
+        setIsCreateModalOpen(false);
+        fetchAdminData();
+        toast({ title: 'Post created!', description: 'Your blog post was created successfully.' });
+      } else {
+        const data = await response.json();
+        setError(data.message || 'Failed to create post');
+      }
+    } catch (err) {
+      setError('Failed to create post');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Show access modal if not authenticated
@@ -183,8 +228,8 @@ export default function AdminPage() {
                     <CardTitle>Blog Posts</CardTitle>
                     <CardDescription>Manage your blog content</CardDescription>
                   </div>
-                  <Button asChild>
-                    <Link href="/admin/posts/new">Create Post</Link>
+                  <Button onClick={() => setIsCreateModalOpen(true)}>
+                    Create Post
                   </Button>
                 </div>
               </CardHeader>
@@ -293,6 +338,58 @@ export default function AdminPage() {
           </div>
         </div>
       </section>
+
+      <Dialog open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
+        <DialogContent className="max-w-lg">
+          <DialogHeader>
+            <DialogTitle>Create New Blog Post</DialogTitle>
+            <DialogDescription>Fill in the details below to create a new blog post.</DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleCreatePost} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium mb-1" htmlFor="title">Title</label>
+              <Input id="title" name="title" value={createForm.title} onChange={handleCreateInputChange} required />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1" htmlFor="content">Content</label>
+              <Textarea id="content" name="content" value={createForm.content} onChange={handleCreateInputChange} rows={5} required />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1" htmlFor="author">Author</label>
+              <Input id="author" name="author" value={createForm.author} onChange={handleCreateInputChange} required />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1" htmlFor="category">Category</label>
+              <Select value={createForm.categoryId} onValueChange={handleCategoryChange} required>
+                <SelectTrigger id="category">
+                  <SelectValue placeholder="Select a category" />
+                </SelectTrigger>
+                <SelectContent>
+                  {categories.map((cat: any) => (
+                    <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1" htmlFor="metaTitle">Meta Title (SEO)</label>
+              <Input id="metaTitle" name="metaTitle" value={createForm.metaTitle} onChange={handleCreateInputChange} placeholder="SEO title for this post (optional)" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1" htmlFor="metaDescription">Meta Description (SEO)</label>
+              <Textarea id="metaDescription" name="metaDescription" value={createForm.metaDescription} onChange={handleCreateInputChange} placeholder="SEO description for this post (optional)" rows={2} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1" htmlFor="keywords">Keywords (comma separated)</label>
+              <Input id="keywords" name="keywords" value={createForm.keywords} onChange={handleCreateInputChange} placeholder="e.g. marketing, healthcare, SEO" />
+            </div>
+            {error && <div className="text-red-600 text-sm">{error}</div>}
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? 'Creating...' : 'Create Post'}
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 } 

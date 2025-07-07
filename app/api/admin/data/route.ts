@@ -42,4 +42,45 @@ export async function GET(request: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+export async function POST(request: NextRequest) {
+  function slugify(text: string) {
+    return text
+      .toString()
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-]/g, '')
+      .replace(/-+/g, '-');
+  }
+  try {
+    const { title, content, author, categoryId, metaTitle, metaDescription, keywords } = await request.json();
+    if (!title || !content || !author || !categoryId) {
+      return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
+    }
+    // Validate category exists
+    const category = await db.category.findUnique({ where: { id: categoryId } });
+    if (!category) {
+      return NextResponse.json({ message: 'Invalid category' }, { status: 400 });
+    }
+    const slug = slugify(title);
+    const newPost = await db.blogPost.create({
+      data: {
+        title: title.trim(),
+        content: content.trim(),
+        author: author.trim(),
+        slug,
+        published: true,
+        categories: { connect: { id: categoryId } },
+        metaTitle: metaTitle?.trim() || undefined,
+        metaDescription: metaDescription?.trim() || undefined,
+        keywords: keywords?.trim() || undefined,
+      },
+    });
+    return NextResponse.json({ post: newPost }, { status: 201 });
+  } catch (error) {
+    console.error('Error creating blog post:', error);
+    return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
+  }
 } 
