@@ -71,7 +71,7 @@ export default async function BlogPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
-              <Card key={post.id} className="group hover:shadow-xl transition-all duration-300">
+              <Card key={post.id} className="group hover:shadow-xl transition-all duration-300 flex flex-col h-full min-h-[420px]">
                 {post.featuredImage && (
                   <div className="aspect-video overflow-hidden rounded-t-lg">
                     <img
@@ -81,7 +81,8 @@ export default async function BlogPage() {
                     />
                   </div>
                 )}
-                <CardHeader>
+                {/* Scrollable Content Area */}
+                <CardHeader className="flex-1 overflow-y-auto min-h-[120px]">
                   <div className="flex flex-wrap gap-2 mb-3">
                     {post.categories.map((category) => (
                       <Badge key={category.id} variant="outline" className="text-xs">
@@ -98,8 +99,9 @@ export default async function BlogPage() {
                     {post.excerpt || post.content.substring(0, 150)}...
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
+                {/* Footer fixed at bottom */}
+                <div className="px-6 pb-6 pt-2 border-t bg-white">
+                  <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
                     <div className="flex items-center gap-2">
                       <User className="w-4 h-4" />
                       <span>{post.author}</span>
@@ -115,9 +117,8 @@ export default async function BlogPage() {
                       </span>
                     </div>
                   </div>
-                  
                   {post.reviews.length > 0 && (
-                    <div className="mb-4">
+                    <div className="mb-2">
                       <div className="flex items-center gap-1 text-yellow-500">
                         {[...Array(5)].map((_, i) => (
                           <span key={i} className="text-sm">
@@ -130,14 +131,13 @@ export default async function BlogPage() {
                       </p>
                     </div>
                   )}
-                  
-                  <Button asChild className="w-full group">
+                  <Button asChild className="w-full group mt-2">
                     <Link href={`/blog/${post.slug}`}>
                       Read More
                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </Button>
-                </CardContent>
+                </div>
               </Card>
             ))}
           </div>
